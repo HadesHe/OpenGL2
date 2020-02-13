@@ -44,6 +44,8 @@ class GL2View(context: Context, attrs: AttributeSet? = null) : GLSurfaceView(con
             Log.d(TAG, "currDeg $currDeg")
             GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT or GLES20.GL_DEPTH_BUFFER_BIT)
             Matrix.setRotateM(mOpMatrix, 0, currDeg.toFloat(), 0f, 0f, -1f)
+            //通过调整在 Z 轴的位置实现越转越远的效果
+            Matrix.translateM(mOpMatrix, 0, 0f, 0f, currDeg / 90f)
             Matrix.multiplyMM(
                 mMVPMatrix, 0,
                 mViewMatrix, 0,
