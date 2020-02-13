@@ -2,7 +2,7 @@ package com.example.opengl2.shape
 
 import android.content.Context
 import android.opengl.GLES20
-import com.example.opengl2.GLUtil
+import com.example.opengl2.util.GLUtil
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer

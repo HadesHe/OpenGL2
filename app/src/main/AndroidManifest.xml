@@ -20,6 +20,7 @@
 
         </activity>
         <activity android:name=".CubeActivity"/>
+        <activity android:name=".PentagonActivity"/>
     </application>
 
 </manifest>

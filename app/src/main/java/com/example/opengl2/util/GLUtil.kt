@@ -1,11 +1,13 @@
-package com.example.opengl2
+package com.example.opengl2.util
 
 import android.content.Context
 import android.opengl.GLES20
 import android.util.Log
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
 import java.lang.Exception
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+import java.nio.FloatBuffer
+import java.nio.ShortBuffer
 import java.nio.charset.Charset
 
 object GLUtil {
@@ -55,5 +57,33 @@ object GLUtil {
 
     }
 
+}
 
+/**
+ * float 数组缓冲数据
+ */
+fun FloatArray.getFloatBuffer(): FloatBuffer? {
+    if (isEmpty()) {
+        return null
+    }
+    var buffer = ByteBuffer.allocateDirect(size * 4)
+        .order(ByteOrder.nativeOrder())
+        .asFloatBuffer()
+    buffer.put(this)
+    buffer.position(0)
+    return buffer
+}
+
+/**
+ * short 数组缓冲数据
+ */
+fun ShortArray.getShortBuffer(): ShortBuffer? {
+    if (isEmpty()) {
+        return null
+    }
+    var buffer = ByteBuffer.allocateDirect(size * 2)
+        .order(ByteOrder.nativeOrder()).asShortBuffer()
+    buffer.put(this)
+    buffer.position(0)
+    return buffer
 }
