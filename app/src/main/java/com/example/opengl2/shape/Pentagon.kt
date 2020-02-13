@@ -5,8 +5,6 @@ import android.opengl.GLES20
 import com.example.opengl2.util.GLUtil
 import com.example.opengl2.util.getFloatBuffer
 import com.example.opengl2.util.getShortBuffer
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
 import java.nio.FloatBuffer
 import java.nio.ShortBuffer
 
