@@ -4,9 +4,11 @@ import android.content.Context
 import android.opengl.GLES20
 import com.example.opengl2.util.GLUtil
 import com.example.opengl2.util.getFloatBuffer
+import com.example.opengl2.util.getShortBuffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer
+import java.nio.ShortBuffer
 
 /**
  * Created by hezhanghe on 2020-02-13.
@@ -14,6 +16,7 @@ import java.nio.FloatBuffer
  */
 class Pentagon(context: Context) {
 
+    private var idxBuffer: ShortBuffer?
     private var muMVPMatrixHandle: Int = 0
     private var mColorBuffer: FloatBuffer?
     private var mColorHandle: Int = 0
@@ -25,6 +28,7 @@ class Pentagon(context: Context) {
 
         vertexBuffer= sCoor.getFloatBuffer()
         mColorBuffer= colors.getFloatBuffer()
+        idxBuffer= idx.getShortBuffer()
 
         val vertexShader = GLUtil.loadShaderAssets(context, GLES20.GL_VERTEX_SHADER, "tri.vert")
         val fragmentShader = GLUtil.loadShaderAssets(context, GLES20.GL_FRAGMENT_SHADER, "tri.frag")
@@ -42,7 +46,8 @@ class Pentagon(context: Context) {
             mPositionHandle, COORD_PER_VERTEX,
             GLES20.GL_FLOAT, false, vertexStride, vertexBuffer
         )
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount)
+//        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount)
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, idx.size,GLES20.GL_UNSIGNED_SHORT,idxBuffer)
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix")
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, mvpMatrix, 0)
 
@@ -60,10 +65,10 @@ class Pentagon(context: Context) {
 
     companion object {
         val sCoor = floatArrayOf(
-            -0.5f, 0.5f, 0f,
-            0f, 0.8f, 0f,
-            -0.5f, -0.5f, 0f,
-            0.5f, 0.5f, 0f,
+            0.5f,0.5f,0f,
+            0f,0.8f,0f,
+            -0.5f,0.5f,0f,
+            -0.5f,-0.5f,0f,
             0.5f,-0.5f,0f
         )
 
@@ -73,6 +78,10 @@ class Pentagon(context: Context) {
             0.19607843f, 1.0f, 0.02745098f, 1.0f,
             1f,0f,1f,1f,
             0f,1f,0f,1f
+        )
+
+        val idx= shortArrayOf(
+            0,1,2,2,3,0,4,0,3
         )
         val COORD_PER_VERTEX = 3
 

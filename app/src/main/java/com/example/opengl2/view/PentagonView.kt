@@ -15,7 +15,7 @@ class PentagonView(context: Context) : BaseGL2View(context) {
     }
 
     inner class PentagonRender:Renderer{
-        private var currDeg = 30
+        private var currDeg = 0
         //视图投影矩阵
         private var mMVPMatrix = FloatArray(16)
         //投影矩阵
@@ -43,10 +43,10 @@ class PentagonView(context: Context) : BaseGL2View(context) {
             )
             mCube?.draw(mMVPMatrix)
 
-            currDeg++
-            if (currDeg >= 360) {
-                currDeg = 0
-            }
+//            currDeg++
+//            if (currDeg >= 360) {
+//                currDeg = 0
+//            }
 
         }
 
