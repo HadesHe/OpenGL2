@@ -31,7 +31,8 @@ class MenuActivity : AppCompatActivity() {
 
     private fun fakeData(): ArrayList<IntentClass> {
         return arrayListOf(
-            IntentClass("Triangle", Intent(MenuActivity@this,MainActivity::class.java))
+            IntentClass("Triangle", Intent(MenuActivity@this,MainActivity::class.java)),
+            IntentClass("Cube", Intent(MenuActivity@this,CubeActivity::class.java))
         )
     }
 
