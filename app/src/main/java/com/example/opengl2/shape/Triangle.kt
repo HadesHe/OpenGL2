@@ -13,6 +13,7 @@ import java.nio.FloatBuffer
  */
 class Triangle(val context: Context) {
 
+    private var muMVPMatrixHandle: Int = 0
     private var mColorBuffer: FloatBuffer
     private var mColorHandle: Int = 0
     private var mPositionHandle: Int = 0
@@ -38,7 +39,7 @@ class Triangle(val context: Context) {
         GLES20.glLinkProgram(mProgram)
     }
 
-    fun draw() {
+    fun draw(mvpMatrix: FloatArray) {
         GLES20.glUseProgram(mProgram)
         mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition")
         GLES20.glEnableVertexAttribArray(mPositionHandle)
@@ -46,6 +47,9 @@ class Triangle(val context: Context) {
             mPositionHandle, COORD_PER_VERTEX,
             GLES20.GL_FLOAT, false, vertexStride, vertexBuffer
         )
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount)
+        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix")
+        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, mvpMatrix, 0)
 
         mColorHandle = GLES20.glGetAttribLocation(mProgram, "aColor")
         GLES20.glEnableVertexAttribArray(mColorHandle)
@@ -54,9 +58,9 @@ class Triangle(val context: Context) {
             GLES20.GL_FLOAT, false, vertexColorStride, mColorBuffer
         )
 
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount)
+
         GLES20.glDisableVertexAttribArray(mPositionHandle)
-        GLES20.glDisableVertexAttribArray(mColorHandle)
+//        GLES20.glDisableVertexAttribArray(mColorHandle)
     }
 
     companion object {
