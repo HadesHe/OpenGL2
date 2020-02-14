@@ -3,8 +3,8 @@ package com.example.opengl2.shape
 import android.content.Context
 import android.opengl.GLES20
 import com.example.opengl2.util.GLUtil
-import com.example.opengl2.util.getFloatBuffer
-import com.example.opengl2.util.getShortBuffer
+import com.example.opengl2.util.toFloatBuffer
+import com.example.opengl2.util.toShortBuffer
 import java.nio.FloatBuffer
 import java.nio.ShortBuffer
 
@@ -19,9 +19,9 @@ class Hexagon(context: Context) {
 
     init {
 
-        vertexBuffer = sCoor.getFloatBuffer()
-        mColorBuffer = colors.getFloatBuffer()
-        idxBuffer = idx.getShortBuffer()
+        vertexBuffer = sCoor.toFloatBuffer()
+        mColorBuffer = colors.toFloatBuffer()
+        idxBuffer = idx.toShortBuffer()
 
         val vertexShader = GLUtil.loadShaderAssets(context, GLES20.GL_VERTEX_SHADER, "tri.vert")
         val fragmentShader = GLUtil.loadShaderAssets(context, GLES20.GL_FRAGMENT_SHADER, "tri.frag")

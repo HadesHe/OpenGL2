@@ -1,7 +1,10 @@
 package com.example.opengl2.util
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.opengl.GLES20
+import android.opengl.GLUtils
 import android.util.Log
 import java.lang.Exception
 import java.nio.ByteBuffer
@@ -57,12 +60,56 @@ object GLUtil {
 
     }
 
+    fun loadVertexShaderAssets(ctx: Context, name: String): Int {
+        return loadShaderAssets(ctx, GLES20.GL_VERTEX_SHADER, name)
+    }
+
+    fun loadFragShaderAssets(ctx: Context, name: String): Int {
+        return loadShaderAssets(ctx, GLES20.GL_FRAGMENT_SHADER, name)
+    }
+
+    fun loadTexture(ctx: Context, resId: Int): Int {
+        val bitmap = BitmapFactory.decodeResource(ctx.resources, resId)
+        return loadTexture(ctx, bitmap)
+    }
+
+    fun loadTexture(ctx: Context, bitmap: Bitmap): Int {
+        val textures = IntArray(1)
+        GLES20.glGenTextures(1, textures, 0)
+        var textureId = textures[0]
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId)
+        GLES20.glTexParameterf(
+            GLES20.GL_TEXTURE_2D,
+            GLES20.GL_TEXTURE_MIN_FILTER,
+            GLES20.GL_NEAREST.toFloat()
+        )
+        GLES20.glTexParameterf(
+            GLES20.GL_TEXTURE_2D,
+            GLES20.GL_TEXTURE_MAG_FILTER,
+            GLES20.GL_LINEAR.toFloat()
+        )
+        GLES20.glTexParameterf(
+            GLES20.GL_TEXTURE_2D,
+            GLES20.GL_TEXTURE_WRAP_S,
+            GLES20.GL_CLAMP_TO_EDGE.toFloat()
+        )
+        GLES20.glTexParameterf(
+            GLES20.GL_TEXTURE_2D,
+            GLES20.GL_TEXTURE_WRAP_T,
+            GLES20.GL_CLAMP_TO_EDGE.toFloat()
+        )
+        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0)
+        bitmap.recycle()
+        return textureId
+
+    }
+
 }
 
 /**
  * float 数组缓冲数据
  */
-fun FloatArray.getFloatBuffer(): FloatBuffer? {
+fun FloatArray.toFloatBuffer(): FloatBuffer? {
     if (isEmpty()) {
         return null
     }
@@ -77,7 +124,7 @@ fun FloatArray.getFloatBuffer(): FloatBuffer? {
 /**
  * short 数组缓冲数据
  */
-fun ShortArray.getShortBuffer(): ShortBuffer? {
+fun ShortArray.toShortBuffer(): ShortBuffer? {
     if (isEmpty()) {
         return null
     }

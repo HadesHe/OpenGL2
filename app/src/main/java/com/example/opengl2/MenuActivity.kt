@@ -34,7 +34,8 @@ class MenuActivity : AppCompatActivity() {
             IntentClass("Triangle", Intent(MenuActivity@ this, MainActivity::class.java)),
             IntentClass("Cube", Intent(MenuActivity@ this, CubeActivity::class.java)),
             IntentClass("Pentagon", Intent(MenuActivity@ this, PentagonActivity::class.java)),
-            IntentClass("Thexagon", Intent(MenuActivity@ this, HexagonActivity::class.java))
+            IntentClass("Thexagon", Intent(MenuActivity@ this, HexagonActivity::class.java)),
+            IntentClass("TextureTriangle", Intent(MenuActivity@ this, TextureTriangleActivity::class.java))
         )
     }
 
