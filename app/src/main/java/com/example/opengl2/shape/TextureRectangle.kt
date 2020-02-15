@@ -88,18 +88,20 @@ class TextureRectangle(val context: Context) {
         private val sCoo = floatArrayOf(
             -c.toFloat(), c.toFloat(), 0f,
             -c.toFloat(), -c.toFloat(), 0f,
-            c.toFloat(), -c.toFloat(), 0f
+            c.toFloat(), -c.toFloat(), 0f,
+            c.toFloat(),c.toFloat(),0f
         )
         private val tetureCoo = floatArrayOf(
             0f, 0f,
             0f, 1f,
-            1f, 0f
+            1f, 0f,
+            1f,1f
         )
         private val TEXTURE_PER_VERTEX = 2
         private val vertexTureStride = TEXTURE_PER_VERTEX * 4
 
         private val idx = shortArrayOf(
-            0, 1, 2
+            1,2,3,0,1,3
         )
     }
 

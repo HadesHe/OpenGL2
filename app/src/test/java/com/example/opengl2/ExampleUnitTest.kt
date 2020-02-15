@@ -12,6 +12,13 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        for (i in 180..270) {
+
+            var x = 1 + Math.sin(Math.PI * i / 180f)
+            var y = 1 + Math.cos(Math.PI * i / 180f)
+
+            System.out.println("x=$x y=$y")
+
+        }
     }
 }
