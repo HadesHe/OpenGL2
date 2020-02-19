@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.opengl2.activity.TreasureActivity
+import com.example.opengl2.activity.WorldActivity
 
 /**
  * Created by hezhanghe on 2020-02-13.
@@ -37,7 +38,8 @@ class MenuActivity : AppCompatActivity() {
             IntentClass("Pentagon", Intent(MenuActivity@ this, PentagonActivity::class.java)),
             IntentClass("Thexagon", Intent(MenuActivity@ this, HexagonActivity::class.java)),
             IntentClass("TextureTriangle", Intent(MenuActivity@ this, TextureTriangleActivity::class.java)),
-            IntentClass("Treasure", Intent(MenuActivity@ this, TreasureActivity::class.java))
+            IntentClass("Treasure", Intent(MenuActivity@ this, TreasureActivity::class.java)),
+            IntentClass("World", Intent(MenuActivity@ this, WorldActivity::class.java))
 
         )
     }

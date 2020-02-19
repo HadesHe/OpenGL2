@@ -2,6 +2,7 @@ package com.example.opengl2.shape
 
 import android.content.Context
 import android.opengl.GLES20
+import com.example.opengl2.base.RenderAble
 import com.example.opengl2.util.GLUtil
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -11,7 +12,7 @@ import java.nio.FloatBuffer
  * Created by hezhanghe on 2020-02-12.
  * github: https://github.com/HadesHe
  */
-class Triangle(val context: Context) {
+class Triangle(context: Context):RenderAble(context) {
 
     private var muMVPMatrixHandle: Int = 0
     private var mColorBuffer: FloatBuffer
@@ -39,7 +40,7 @@ class Triangle(val context: Context) {
         GLES20.glLinkProgram(mProgram)
     }
 
-    fun draw(mvpMatrix: FloatArray) {
+    override fun draw(mvpMatrix: FloatArray) {
         GLES20.glUseProgram(mProgram)
         mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition")
         GLES20.glEnableVertexAttribArray(mPositionHandle)

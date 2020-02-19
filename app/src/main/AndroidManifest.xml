@@ -24,6 +24,7 @@
         <activity android:name=".HexagonActivity"/>
         <activity android:name=".TextureTriangleActivity"/>
         <activity android:name=".activity.TreasureActivity"/>
+        <activity android:name=".activity.WorldActivity"/>
     </application>
 
 </manifest>
