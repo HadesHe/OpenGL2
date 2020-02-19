@@ -36,6 +36,39 @@ class WorldShape(context: Context) : RenderAble(context), OP<RenderAble> {
         add(SimpleShape(context, top))
         add(SimpleShape(context, bottom))
         add(SimpleShape(context, ground))
+
+
+//          宝石团
+//        var distance=0.6f
+//        var treasure = Shape(Cons.TREASURE_COO, Cons.TREASURE_COLOR, GLES20.GL_TRIANGLE_FAN)
+//        var treasure1=treasure.moveAndCreate(distance,0f,0f)
+//        var treasure2=treasure.moveAndCreate(-distance,0f,0f)
+//
+//        var treasure23=treasure.moveAndCreate(0f,-distance,0f)
+//        var treasure22=treasure23.moveAndCreate(-distance,0f,0f)
+//        var treasure21=treasure22.moveAndCreate(-distance,0f,0f)
+//        var treasure24=treasure23.moveAndCreate(distance,0f,0f)
+//        var treasure25=treasure24.moveAndCreate(distance,0f,0f)
+//
+//        var treasure32=treasure23.moveAndCreate(0f,-distance,0f)
+//        var treasure31=treasure32.moveAndCreate(-distance,0f,0f)
+//        var treasure33=treasure32.moveAndCreate(distance,0f,0f)
+//        var treasure4=treasure32.moveAndCreate(0f,-distance,0f)
+//
+//        add(SimpleShape(context,treasure))
+//        add(SimpleShape(context,treasure1))
+//        add(SimpleShape(context,treasure2))
+//        add(SimpleShape(context,treasure21))
+//        add(SimpleShape(context,treasure22))
+//        add(SimpleShape(context,treasure23))
+//        add(SimpleShape(context,treasure24))
+//        add(SimpleShape(context,treasure25))
+//
+//        add(SimpleShape(context,treasure31))
+//        add(SimpleShape(context,treasure32))
+//        add(SimpleShape(context,treasure33))
+//
+//        add(SimpleShape(context,treasure4))
     }
 
 

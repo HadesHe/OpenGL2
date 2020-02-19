@@ -44,10 +44,10 @@ class WorldView(context: Context, attrs: AttributeSet? = null) : GLSurfaceView(c
             mWorldShape.draw(mMVPMatrix)
             GLES20.glEnable(GLES20.GL_DEPTH_TEST)
 
-            currDeg++
-            if (currDeg >= 360) {
-                currDeg = 0
-            }
+//            currDeg++
+//            if (currDeg >= 360) {
+//                currDeg = 0
+//            }
 
         }
 
@@ -55,7 +55,7 @@ class WorldView(context: Context, attrs: AttributeSet? = null) : GLSurfaceView(c
             GLES20.glViewport(0, 0, width, height)
             val ratio = width / height.toFloat()
             Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1f, 1f, 3f, 9f)
-            Matrix.setLookAtM(mViewMatrix, 0, 2f, 2f, -6f, 0f, 0f, 0f, 0f, 1f, 0f)
+            Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 6f, 0f, 0f, 0f, 0f, 1f, 0f)
         }
 
         override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
