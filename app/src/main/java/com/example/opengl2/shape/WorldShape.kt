@@ -31,11 +31,13 @@ class WorldShape(context: Context) : RenderAble(context), OP<RenderAble> {
         var ground = Shape(mVertex, mColor, GLES20.GL_LINE_LOOP)
         var top = ground.moveAndCreate(0f, 1f, 0f)
         var bottom = ground.moveAndCreate(0f, -1f, 0f)
+        var line =Shape(mVertex2, mColor2,GLES20.GL_LINES)
 
         add(SimpleShape(context, coo))
         add(SimpleShape(context, top))
         add(SimpleShape(context, bottom))
-        add(SimpleShape(context, ground))
+//        add(SimpleShape(context, ground))
+        add(SimpleShape(context, line))
 
 
 //          宝石团
@@ -85,11 +87,36 @@ class WorldShape(context: Context) : RenderAble(context), OP<RenderAble> {
             1f, 0f, 1f,
             1f, 0f, -1f
         )
+
+        val mVertex2 = floatArrayOf(
+            1f, 1f, 1f,
+            1f, -1f, 1f,
+
+            -1f, 1f, 1f,
+            -1f, -1f, 1f,
+
+            -1f, 1f, -1f,
+            -1f, -1f, -1f,
+
+            1f, 1f, -1f,
+            1f, -1f, -1f
+        )
         val mColor = floatArrayOf(
             1f, 1f, 1f, 1f,
             1f, 1f, 1f, 1f,
             1f, 1f, 1f, 1f,
             0.21960784f, 0.56078434f, 0.92156863f, 1f
+        )
+
+        val mColor2 = floatArrayOf(
+            1f, 0f, 0f, 1f,
+            1f, 0f, 0f, 1f,
+            1f, 1f, 1f, 1f,
+            1f, 1f, 1f, 1f,
+            1f, 1f, 1f, 1f,
+            1f, 1f, 1f, 1f,
+            1f, 1f, 1f, 1f,
+            1f, 1f, 1f, 1f
         )
     }
 

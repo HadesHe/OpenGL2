@@ -10,6 +10,7 @@ import com.example.opengl2.base.Shape
 import com.example.opengl2.shape.SimpleShape
 import com.example.opengl2.shape.WorldShape
 import com.example.opengl2.util.Cons
+import com.example.opengl2.util.MatrixStack
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -38,10 +39,18 @@ class WorldView(context: Context, attrs: AttributeSet? = null) : GLSurfaceView(c
 
         override fun onDrawFrame(gl: GL10?) {
             GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT or GLES20.GL_DEPTH_BUFFER_BIT)
-            Matrix.setRotateM(mOpMatrix, 0, currDeg.toFloat(), 0f, 1f, 0f)
-            Matrix.multiplyMM(mMVPMatrix, 0, mViewMatrix, 0, mOpMatrix, 0)
-            Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mMVPMatrix, 0)
-            mWorldShape.draw(mMVPMatrix)
+
+//            MatrixStack.rotate(currDeg.toFloat(),0f,1f,0f)
+            MatrixStack.save()
+            MatrixStack.translate(-1.5f, 0f, 0f)
+            mWorldShape.draw(MatrixStack.peek())
+            MatrixStack.restore()
+
+            MatrixStack.save()
+            MatrixStack.translate(1.5f,0f,0f)
+            mWorldShape.draw(MatrixStack.peek())
+            MatrixStack.restore()
+
             GLES20.glEnable(GLES20.GL_DEPTH_TEST)
 
 //            currDeg++
@@ -54,8 +63,9 @@ class WorldView(context: Context, attrs: AttributeSet? = null) : GLSurfaceView(c
         override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
             GLES20.glViewport(0, 0, width, height)
             val ratio = width / height.toFloat()
-            Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1f, 1f, 3f, 9f)
-            Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 6f, 0f, 0f, 0f, 0f, 1f, 0f)
+            MatrixStack.reset()
+            MatrixStack.frustum(-ratio, ratio, -1f, 1f, 3f, 9f)
+            MatrixStack.lookAt(0f, 0f, 6f, 0f, 0f, 0f, 0f, 1f, 0f)
         }
 
         override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
