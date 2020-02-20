@@ -11,7 +11,7 @@ import com.example.opengl2.util.toFloatBuffer
 import java.nio.FloatBuffer
 import java.util.ArrayList
 
-class WorldShape(context: Context) : RenderAble(context), OP<RenderAble> {
+class WorldShape(context: Context, viewType: String? = null) : RenderAble(context), OP<RenderAble> {
     override fun add(ts: RenderAble) {
         mRendererAbles.add(ts)
     }
@@ -27,17 +27,24 @@ class WorldShape(context: Context) : RenderAble(context), OP<RenderAble> {
 
     init {
         mRendererAbles = arrayListOf<RenderAble>()
-        var coo = Shape(Cons.VERTEX_COO, Cons.COLOR_COO, GLES20.GL_LINES)
-        var ground = Shape(mVertex, mColor, GLES20.GL_LINE_LOOP)
-        var top = ground.moveAndCreate(0f, 1f, 0f)
-        var bottom = ground.moveAndCreate(0f, -1f, 0f)
-        var line =Shape(mVertex2, mColor2,GLES20.GL_LINES)
 
-        add(SimpleShape(context, coo))
-        add(SimpleShape(context, top))
-        add(SimpleShape(context, bottom))
+        when (viewType) {
+            null -> {
+
+            }
+        }
+
+            var coo = Shape(Cons.VERTEX_COO, Cons.COLOR_COO, GLES20.GL_LINES)
+            var ground = Shape(mVertex, mColor, GLES20.GL_LINE_LOOP)
+            var top = ground.moveAndCreate(0f, 1f, 0f)
+            var bottom = ground.moveAndCreate(0f, -1f, 0f)
+            var line = Shape(mVertex2, mColor2, GLES20.GL_LINES)
+
+            add(SimpleShape(context, coo))
+            add(SimpleShape(context, top))
+            add(SimpleShape(context, bottom))
 //        add(SimpleShape(context, ground))
-        add(SimpleShape(context, line))
+            add(SimpleShape(context, line))
 
 
 //          宝石团

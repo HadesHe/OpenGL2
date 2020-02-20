@@ -18,18 +18,19 @@ import javax.microedition.khronos.opengles.GL10
  * Created by hezhanghe on 2020-02-16.
  * github: https://github.com/HadesHe
  */
-class WorldView(context: Context, attrs: AttributeSet? = null) : GLSurfaceView(context, attrs) {
+class WorldView(context: Context, attrs: AttributeSet? = null, viewType: String? = null) :
+    GLSurfaceView(context, attrs) {
     private var mRenderer: WorldRenderer
 
     init {
         setEGLContextClientVersion(2)
-        mRenderer = WorldRenderer(context)
+        mRenderer = WorldRenderer(context, viewType)
         setRenderer(mRenderer)
         renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
 
     }
 
-    inner class WorldRenderer(val context: Context) : Renderer {
+    inner class WorldRenderer(val context: Context, val viewType: String? = null) : Renderer {
         private lateinit var mWorldShape: RenderAble
         private var mProjectionMatrix: FloatArray = FloatArray(16)
         private var mViewMatrix: FloatArray = FloatArray(16)
@@ -47,7 +48,7 @@ class WorldView(context: Context, attrs: AttributeSet? = null) : GLSurfaceView(c
             MatrixStack.restore()
 
             MatrixStack.save()
-            MatrixStack.translate(1.5f,0f,0f)
+            MatrixStack.translate(1.5f, 0f, 0f)
             mWorldShape.draw(MatrixStack.peek())
             MatrixStack.restore()
 
@@ -70,7 +71,7 @@ class WorldView(context: Context, attrs: AttributeSet? = null) : GLSurfaceView(c
 
         override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
             GLES20.glClearColor(0f, 0f, 0f, 1f)
-            mWorldShape = WorldShape(context)
+            mWorldShape = WorldShape(context,viewType)
         }
 
     }
