@@ -2,3 +2,6 @@
 
 - 简单宝石团图案
 ![宝石团](https://github.com/HadesHe/OpenGL2/blob/master/app/src/main/res/pics/treasure.jpeg)
+
+- 圆环图案
+![圆环](https://github.com/HadesHe/OpenGL2/blob/master/app/src/main/res/pics/ring.jpg)
