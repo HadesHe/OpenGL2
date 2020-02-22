@@ -5,6 +5,7 @@ import android.opengl.GLES20
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
 import android.util.AttributeSet
+import android.widget.Scroller
 import com.example.opengl2.base.RenderAble
 import com.example.opengl2.base.Shape
 import com.example.opengl2.shape.SimpleShape
@@ -21,6 +22,7 @@ import javax.microedition.khronos.opengles.GL10
 class WorldView(context: Context, attrs: AttributeSet? = null, viewType: String? = null) :
     GLSurfaceView(context, attrs) {
     private var mRenderer: WorldRenderer
+
 
     init {
         setEGLContextClientVersion(2)

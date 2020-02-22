@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.opengl2.activity.RingActivity
 import com.example.opengl2.activity.TreasureActivity
 import com.example.opengl2.activity.WorldActivity
 
@@ -39,7 +40,8 @@ class MenuActivity : AppCompatActivity() {
             IntentClass("Thexagon", Intent(MenuActivity@ this, HexagonActivity::class.java)),
             IntentClass("TextureTriangle", Intent(MenuActivity@ this, TextureTriangleActivity::class.java)),
             IntentClass("Treasure", Intent(MenuActivity@ this, TreasureActivity::class.java)),
-            IntentClass("World", Intent(MenuActivity@ this, WorldActivity::class.java))
+            IntentClass("World", Intent(MenuActivity@ this, WorldActivity::class.java)),
+            IntentClass("Ring", Intent(MenuActivity@ this, RingActivity::class.java))
 
         )
     }

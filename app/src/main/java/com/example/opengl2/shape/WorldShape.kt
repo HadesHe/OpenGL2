@@ -27,24 +27,27 @@ class WorldShape(context: Context, viewType: String? = null) : RenderAble(contex
 
     init {
         mRendererAbles = arrayListOf<RenderAble>()
+        var coo = Shape(Cons.VERTEX_COO, Cons.COLOR_COO, GLES20.GL_LINES)
+        var ground = Shape(mVertex, mColor, GLES20.GL_LINE_LOOP)
+        var top = ground.moveAndCreate(0f, 1f, 0f)
+        var bottom = ground.moveAndCreate(0f, -1f, 0f)
+        var line = Shape(mVertex2, mColor2, GLES20.GL_LINES)
 
+        add(SimpleShape(context, coo))
+        add(SimpleShape(context, top))
+        add(SimpleShape(context, bottom))
+//        add(SimpleShape(context, ground))
+        add(SimpleShape(context, line))
         when (viewType) {
             null -> {
 
+
+            }
+            "Ring" -> {
+                var ring = Shape(Cons.VERTEX_RING, Cons.COLOR_RING, GLES20.GL_TRIANGLE_STRIP)
+                add(SimpleShape(context, ring))
             }
         }
-
-            var coo = Shape(Cons.VERTEX_COO, Cons.COLOR_COO, GLES20.GL_LINES)
-            var ground = Shape(mVertex, mColor, GLES20.GL_LINE_LOOP)
-            var top = ground.moveAndCreate(0f, 1f, 0f)
-            var bottom = ground.moveAndCreate(0f, -1f, 0f)
-            var line = Shape(mVertex2, mColor2, GLES20.GL_LINES)
-
-            add(SimpleShape(context, coo))
-            add(SimpleShape(context, top))
-            add(SimpleShape(context, bottom))
-//        add(SimpleShape(context, ground))
-            add(SimpleShape(context, line))
 
 
 //          宝石团

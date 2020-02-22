@@ -12,11 +12,6 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        Test("a")
-        Test("a1")
-        Test("a2")
-        Test("a3")
-        Test("a4")
 
 
     }
@@ -24,8 +19,29 @@ class ExampleUnitTest {
 
 }
 
-class Test(val a:String){
-    init {
-        System.out.println("a $a")
+fun maxProfit(prices: IntArray): Int {
+    if (prices.isEmpty() || prices.size == 1) {
+        return 0
     }
+
+    var i = 0
+    var valley = prices[0]
+    var peak = prices[0]
+    var maxprofit = 0
+    while (i < prices.size) {
+        while (i < prices.size - 1 && prices[i] >= prices[i + 1]) {
+            i++
+        }
+        valley = prices[i]
+        while ((i < prices.size - 1 && prices[i] <= prices[i + 1])) {
+            i++
+        }
+        peak = prices[i]
+        maxprofit += peak - valley
+    }
+    return maxprofit
+
+
 }
+
+
