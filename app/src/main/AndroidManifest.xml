@@ -26,6 +26,7 @@
         <activity android:name=".activity.TreasureActivity"/>
         <activity android:name=".activity.WorldActivity"/>
         <activity android:name=".activity.RingActivity"/>
+        <activity android:name=".activity.BallActivity"/>
     </application>
 
 </manifest>

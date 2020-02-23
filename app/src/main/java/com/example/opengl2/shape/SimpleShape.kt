@@ -27,7 +27,7 @@ class SimpleShape(context: Context, val shape: Shape) : RenderAble(context) {
     private val vertexColorStride = Cons.DIMENSION_4 * 4
 
     init {
-        mColorBuffer = shape.mColor.toFloatBuffer()
+        mColorBuffer = shape.mColor?.toFloatBuffer()
         mVertexBuffer = shape.mVertex.toFloatBuffer()
         initProgram()
     }

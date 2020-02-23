@@ -5,3 +5,6 @@
 
 - 圆环图案
 ![圆环](https://github.com/HadesHe/OpenGL2/blob/master/app/src/main/res/pics/ring.jpg)
+
+- 球图案
+![球](https://github.com/HadesHe/OpenGL2/blob/master/app/src/main/res/pics/ball.png)

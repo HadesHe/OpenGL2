@@ -6,7 +6,7 @@ import com.example.opengl2.util.Cons
  * Created by hezhanghe on 2020-02-18.
  * github: https://github.com/HadesHe
  */
-data class Shape(var mVertex: FloatArray, var mColor: FloatArray, var mDrawType: Int) : Cloneable {
+data class Shape(var mVertex: FloatArray, var mColor: FloatArray?, var mDrawType: Int) : Cloneable {
     fun getCount(): Int = mVertex.size / Cons.DIMENSION_3
 
     public override fun clone(): Shape {
@@ -14,9 +14,9 @@ data class Shape(var mVertex: FloatArray, var mColor: FloatArray, var mDrawType:
         try {
              clone = super.clone() as Shape
             var vertex = FloatArray(mVertex.size)
-            var color = FloatArray(mColor.size)
+            var color = mColor?.size?.let { FloatArray(it) }
             System.arraycopy(mVertex, 0, vertex, 0, mVertex.size)
-            System.arraycopy(mColor, 0, color, 0, mColor.size)
+            mColor?.size?.let { System.arraycopy(mColor, 0, color, 0, it) }
             clone.mVertex = vertex
             clone.mColor = color
         } catch (e: CloneNotSupportedException) {

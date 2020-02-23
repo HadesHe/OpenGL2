@@ -47,6 +47,10 @@ class WorldShape(context: Context, viewType: String? = null) : RenderAble(contex
                 var ring = Shape(Cons.VERTEX_RING, Cons.COLOR_RING, GLES20.GL_TRIANGLE_STRIP)
                 add(SimpleShape(context, ring))
             }
+            "Ball" -> {
+                var ball = Shape(Cons.ballVert(0.8f, 180), null, GLES20.GL_TRIANGLES)
+                add(BallShape(context, ball, 0.8f))
+            }
         }
 
 

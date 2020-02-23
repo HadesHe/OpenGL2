@@ -2,6 +2,7 @@ package com.example.opengl2.util
 
 import android.util.SparseLongArray
 import com.example.opengl2.shape.Treasure
+import java.util.ArrayList
 
 /**
  * Created by hezhanghe on 2020-02-16.
@@ -9,8 +10,10 @@ import com.example.opengl2.shape.Treasure
  */
 object Cons {
 
+    val VERTEX_BALL: FloatArray= ballVert(0.8f,180)
+    val UNIT_SIZE = 1
     val VERTEX_RING: FloatArray = ringVertex(360, 0.5f, 1f)
-    val COLOR_RING= ringColor()
+    val COLOR_RING = ringColor()
     var ringVertexCount = 0
     val DIMENSION_2 = 2
     val DIMENSION_3 = 3
@@ -124,6 +127,74 @@ object Cons {
 
         return circleArray
 
+    }
+
+    fun ballVert(r: Float, splitCount: Int): FloatArray {
+        val vertixs = ArrayList<Float>()// 存放顶点坐标的ArrayList
+        val dθ = 360f / splitCount// 将球进行单位切分的角度
+        //垂直方向angleSpan度一份
+        var α = -90f
+        while (α < 90) {
+            // 水平方向angleSpan度一份
+            var β = 0f
+            while (β <= 360) {
+                // 纵向横向各到一个角度后计算对应的此点在球面上的坐标
+                val x0 = r * cos(α) * cos(β)
+                val y0 = r * cos(α) * sin(β)
+                val z0 = r * sin(α)
+
+                val x1 = r * cos(α) * cos(β + dθ)
+                val y1 = r * cos(α) * sin(β + dθ)
+                val z1 = r * sin(α)
+
+                val x2 = r * cos(α + dθ) * cos(β + dθ)
+                val y2 = r * cos(α + dθ) * sin(β + dθ)
+                val z2 = r * sin(α + dθ)
+
+                val x3 = r * cos(α + dθ) * cos(β)
+                val y3 = r * cos(α + dθ) * sin(β)
+                val z3 = r * sin(α + dθ)
+
+                // 将计算出来的XYZ坐标加入存放顶点坐标的ArrayList
+                vertixs.add(x1)
+                vertixs.add(y1)
+                vertixs.add(z1)//p1
+                vertixs.add(x3)
+                vertixs.add(y3)
+                vertixs.add(z3)//p3
+                vertixs.add(x0)
+                vertixs.add(y0)
+                vertixs.add(z0)//p0
+                vertixs.add(x1)
+                vertixs.add(y1)
+                vertixs.add(z1)//p1
+                vertixs.add(x2)
+                vertixs.add(y2)
+                vertixs.add(z2)//p2
+                vertixs.add(x3)
+                vertixs.add(y3)
+                vertixs.add(z3)//p3
+                β = β + dθ
+            }
+            α = α + dθ
+        }
+
+        val verticeCount = vertixs.size / 3// 顶点的数量为坐标值数量的1/3，因为一个顶点有3个坐标
+        // 将vertices中的坐标值转存到一个float数组中
+        val vertices = FloatArray(verticeCount * 3)
+        for (i in 0 until vertixs.size) {
+            vertices[i] = vertixs.get(i)
+        }
+        return vertices
+
+    }
+
+    fun sin(a: Float): Float {
+        return Math.sin(Math.toRadians(a.toDouble())).toFloat()
+    }
+
+    fun cos(a: Float): Float {
+        return Math.cos(Math.toRadians(a.toDouble())).toFloat()
     }
 
 }

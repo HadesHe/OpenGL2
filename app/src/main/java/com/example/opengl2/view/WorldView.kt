@@ -45,14 +45,14 @@ class WorldView(context: Context, attrs: AttributeSet? = null, viewType: String?
 
 //            MatrixStack.rotate(currDeg.toFloat(),0f,1f,0f)
             MatrixStack.save()
-            MatrixStack.translate(-1.5f, 0f, 0f)
+//            MatrixStack.translate(-1.5f, 0f, 0f)
             mWorldShape.draw(MatrixStack.peek())
             MatrixStack.restore()
 
-            MatrixStack.save()
-            MatrixStack.translate(1.5f, 0f, 0f)
-            mWorldShape.draw(MatrixStack.peek())
-            MatrixStack.restore()
+//            MatrixStack.save()
+//            MatrixStack.translate(1.5f, 0f, 0f)
+//            mWorldShape.draw(MatrixStack.peek())
+//            MatrixStack.restore()
 
             GLES20.glEnable(GLES20.GL_DEPTH_TEST)
 
@@ -68,7 +68,7 @@ class WorldView(context: Context, attrs: AttributeSet? = null, viewType: String?
             val ratio = width / height.toFloat()
             MatrixStack.reset()
             MatrixStack.frustum(-ratio, ratio, -1f, 1f, 3f, 9f)
-            MatrixStack.lookAt(0f, 0f, 6f, 0f, 0f, 0f, 0f, 1f, 0f)
+            MatrixStack.lookAt(0f, 3f, 6f, 0f, 0f, 0f, 0f, 1f, 0f)
         }
 
         override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
