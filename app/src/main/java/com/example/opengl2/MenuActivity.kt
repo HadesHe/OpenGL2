@@ -9,10 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.opengl2.activity.BallActivity
-import com.example.opengl2.activity.RingActivity
-import com.example.opengl2.activity.TreasureActivity
-import com.example.opengl2.activity.WorldActivity
+import com.example.opengl2.activity.*
 
 /**
  * Created by hezhanghe on 2020-02-13.
@@ -43,7 +40,8 @@ class MenuActivity : AppCompatActivity() {
             IntentClass("Treasure", Intent(MenuActivity@ this, TreasureActivity::class.java)),
             IntentClass("World", Intent(MenuActivity@ this, WorldActivity::class.java)),
             IntentClass("Ring", Intent(MenuActivity@ this, RingActivity::class.java)),
-            IntentClass("Ball", Intent(MenuActivity@ this, BallActivity::class.java))
+            IntentClass("Ball", Intent(MenuActivity@ this, BallActivity::class.java)),
+            IntentClass("BallAmbient", Intent(MenuActivity@ this, BallAmbientActivity::class.java))
 
         )
     }

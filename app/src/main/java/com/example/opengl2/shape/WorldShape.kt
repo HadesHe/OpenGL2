@@ -51,6 +51,10 @@ class WorldShape(context: Context, viewType: String? = null) : RenderAble(contex
                 var ball = Shape(Cons.ballVert(0.8f, 180), null, GLES20.GL_TRIANGLES)
                 add(BallShape(context, ball, 0.8f))
             }
+            Cons.BALL_AMBIENT ->{
+                val ballAmbient=Shape(Cons.ballVert(0.8f,180),null,GLES20.GL_TRIANGLES)
+                add(BallAmbientShape(context,ballAmbient,0.8f))
+            }
         }
 
 

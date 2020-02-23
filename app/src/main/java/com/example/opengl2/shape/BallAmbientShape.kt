@@ -10,11 +10,12 @@ import com.example.opengl2.util.toFloatBuffer
 import java.nio.FloatBuffer
 
 /**
- * Created by hezhanghe on 2020-02-22.
+ * Created by hezhanghe on 2020-02-23.
  * github: https://github.com/HadesHe
  */
-class BallShape(context: Context, val shape: Shape, val mR: Float) : RenderAble(context) {
+class BallAmbientShape(context: Context, val shape: Shape, val mR: Float) : RenderAble(context) {
 
+    private var muAmbientHandle: Int = 0
     private var muRHandle: Int = 0
     private var muMVPMatrixHandle: Int = 0
     private var maPositionHandle: Int = 0
@@ -27,16 +28,18 @@ class BallShape(context: Context, val shape: Shape, val mR: Float) : RenderAble(
     }
 
     private fun initProgram() {
-        val vertexShader = GLUtil.loadVertexShaderAssets(context, "ball.vert")
-        val fragmentShader = GLUtil.loadFragShaderAssets(context, "ball.frag")
+        val vertexShader = GLUtil.loadVertexShaderAssets(context, "ballambient.vert")
+        val fragShader = GLUtil.loadFragShaderAssets(context, "ballambient.frag")
         mProgram = GLES20.glCreateProgram()
         GLES20.glAttachShader(mProgram, vertexShader)
-        GLES20.glAttachShader(mProgram, fragmentShader)
+        GLES20.glAttachShader(mProgram, fragShader)
         GLES20.glLinkProgram(mProgram)
 
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition")
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix")
         muRHandle = GLES20.glGetUniformLocation(mProgram, "uR")
+        muAmbientHandle = GLES20.glGetUniformLocation(mProgram, "uAmbient")
+
 
     }
 
@@ -44,6 +47,7 @@ class BallShape(context: Context, val shape: Shape, val mR: Float) : RenderAble(
         GLES20.glUseProgram(mProgram)
         GLES20.glEnableVertexAttribArray(maPositionHandle)
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, mvpMatrix, 0)
+        GLES20.glUniform4f(muAmbientHandle, 0.5f, 0.5f, 0.5f, 1f)
         GLES20.glVertexAttribPointer(
             maPositionHandle, 3,
             GLES20.GL_FLOAT, false, 3 * 4,

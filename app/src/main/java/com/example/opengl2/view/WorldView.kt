@@ -43,8 +43,8 @@ class WorldView(context: Context, attrs: AttributeSet? = null, viewType: String?
         override fun onDrawFrame(gl: GL10?) {
             GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT or GLES20.GL_DEPTH_BUFFER_BIT)
 
-//            MatrixStack.rotate(currDeg.toFloat(),0f,1f,0f)
             MatrixStack.save()
+            MatrixStack.rotate(currDeg.toFloat(),0f,1f,0f)
 //            MatrixStack.translate(-1.5f, 0f, 0f)
             mWorldShape.draw(MatrixStack.peek())
             MatrixStack.restore()
@@ -56,10 +56,10 @@ class WorldView(context: Context, attrs: AttributeSet? = null, viewType: String?
 
             GLES20.glEnable(GLES20.GL_DEPTH_TEST)
 
-//            currDeg++
-//            if (currDeg >= 360) {
-//                currDeg = 0
-//            }
+            currDeg++
+            if (currDeg >= 360) {
+                currDeg = 0
+            }
 
         }
 

@@ -27,6 +27,7 @@
         <activity android:name=".activity.WorldActivity"/>
         <activity android:name=".activity.RingActivity"/>
         <activity android:name=".activity.BallActivity"/>
+        <activity android:name=".activity.BallAmbientActivity"/>
     </application>
 
 </manifest>
