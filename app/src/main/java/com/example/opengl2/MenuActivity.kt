@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.opengl2.activity.*
+import com.example.opengl2.util.Cons
 
 /**
  * Created by hezhanghe on 2020-02-13.
@@ -36,12 +37,16 @@ class MenuActivity : AppCompatActivity() {
             IntentClass("Cube", Intent(MenuActivity@ this, CubeActivity::class.java)),
             IntentClass("Pentagon", Intent(MenuActivity@ this, PentagonActivity::class.java)),
             IntentClass("Thexagon", Intent(MenuActivity@ this, HexagonActivity::class.java)),
-            IntentClass("TextureTriangle", Intent(MenuActivity@ this, TextureTriangleActivity::class.java)),
+            IntentClass(
+                "TextureTriangle",
+                Intent(MenuActivity@ this, TextureTriangleActivity::class.java)
+            ),
             IntentClass("Treasure", Intent(MenuActivity@ this, TreasureActivity::class.java)),
             IntentClass("World", Intent(MenuActivity@ this, WorldActivity::class.java)),
             IntentClass("Ring", Intent(MenuActivity@ this, RingActivity::class.java)),
             IntentClass("Ball", Intent(MenuActivity@ this, BallActivity::class.java)),
-            IntentClass("BallAmbient", Intent(MenuActivity@ this, BallAmbientActivity::class.java))
+            IntentClass("BallAmbient", Intent(MenuActivity@ this, BallAmbientActivity::class.java)),
+            IntentClass(Cons.BALL_LIGHT, Intent(MenuActivity@ this, BallLightActivity::class.java))
 
         )
     }

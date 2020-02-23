@@ -10,6 +10,7 @@ import java.util.ArrayList
  */
 object Cons {
 
+    val BALL_LIGHT: String="BallLight"
     val BALL_AMBIENT: String = "BallAmbient"
     val VERTEX_BALL: FloatArray = ballVert(0.8f, 180)
     val UNIT_SIZE = 1

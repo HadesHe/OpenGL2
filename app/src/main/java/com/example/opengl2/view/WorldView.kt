@@ -11,6 +11,7 @@ import com.example.opengl2.base.Shape
 import com.example.opengl2.shape.SimpleShape
 import com.example.opengl2.shape.WorldShape
 import com.example.opengl2.util.Cons
+import com.example.opengl2.util.GLState
 import com.example.opengl2.util.MatrixStack
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
@@ -43,6 +44,9 @@ class WorldView(context: Context, attrs: AttributeSet? = null, viewType: String?
         override fun onDrawFrame(gl: GL10?) {
             GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT or GLES20.GL_DEPTH_BUFFER_BIT)
 
+            if(Cons.BALL_LIGHT.equals(viewType)) {
+                GLState.setLightLocation(-1f, 1f, -1f)
+            }
             MatrixStack.save()
             MatrixStack.rotate(currDeg.toFloat(),0f,1f,0f)
 //            MatrixStack.translate(-1.5f, 0f, 0f)
