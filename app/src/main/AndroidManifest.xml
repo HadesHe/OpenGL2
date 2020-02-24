@@ -29,6 +29,7 @@
         <activity android:name=".activity.BallActivity"/>
         <activity android:name=".activity.BallAmbientActivity"/>
         <activity android:name=".activity.BallLightActivity"/>
+        <activity android:name=".activity.TextureActivity"/>
     </application>
 
 </manifest>

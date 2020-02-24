@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':seek3'
 rootProject.name='OpenGL2'

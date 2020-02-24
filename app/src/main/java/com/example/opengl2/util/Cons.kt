@@ -12,6 +12,7 @@ object Cons {
 
     val BALL_LIGHT: String="BallLight"
     val BALL_AMBIENT: String = "BallAmbient"
+    val TEXTURE:String="Texture"
     val VERTEX_BALL: FloatArray = ballVert(0.8f, 180)
     val UNIT_SIZE = 1
     val VERTEX_RING: FloatArray = ringVertex(360, 0.5f, 1f)
