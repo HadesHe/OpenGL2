@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.opengl.GLES20
 import android.opengl.GLUtils
 import android.util.Log
+import com.example.opengl2.RepeatType
 import java.lang.Exception
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -68,12 +69,13 @@ object GLUtil {
         return loadShaderAssets(ctx, GLES20.GL_FRAGMENT_SHADER, name)
     }
 
+
     fun loadTexture(ctx: Context, resId: Int): Int {
         val bitmap = BitmapFactory.decodeResource(ctx.resources, resId)
-        return loadTexture(ctx, bitmap)
+        return loadTexture(bitmap)
     }
 
-    fun loadTexture(ctx: Context, bitmap: Bitmap): Int {
+    fun loadTexture(bitmap: Bitmap, repeatType: RepeatType = RepeatType.REPEAT): Int {
         val textures = IntArray(1)
         GLES20.glGenTextures(1, textures, 0)
         var textureId = textures[0]
@@ -88,15 +90,40 @@ object GLUtil {
             GLES20.GL_TEXTURE_MAG_FILTER,
             GLES20.GL_LINEAR.toFloat()
         )
+
+        var wrapS = GLES20.GL_REPEAT
+        var wrapT = GLES20.GL_REPEAT
+        when (repeatType) {
+            RepeatType.NONE -> {
+                wrapS = GLES20.GL_CLAMP_TO_EDGE
+                wrapT = GLES20.GL_CLAMP_TO_EDGE
+
+            }
+            RepeatType.REPAET_X -> {
+                wrapS = GLES20.GL_REPEAT
+                wrapT = GLES20.GL_CLAMP_TO_EDGE
+
+            }
+            RepeatType.REPEAT_Y -> {
+                wrapS = GLES20.GL_CLAMP_TO_EDGE
+                wrapT = GLES20.GL_REPEAT
+
+            }
+            RepeatType.REPEAT -> {
+                wrapS = GLES20.GL_REPEAT
+                wrapT = GLES20.GL_REPEAT
+
+            }
+        }
         GLES20.glTexParameterf(
             GLES20.GL_TEXTURE_2D,
             GLES20.GL_TEXTURE_WRAP_S,
-            GLES20.GL_CLAMP_TO_EDGE.toFloat()
+            wrapS.toFloat()
         )
         GLES20.glTexParameterf(
             GLES20.GL_TEXTURE_2D,
             GLES20.GL_TEXTURE_WRAP_T,
-            GLES20.GL_CLAMP_TO_EDGE.toFloat()
+            wrapT.toFloat()
         )
         GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0)
         bitmap.recycle()
