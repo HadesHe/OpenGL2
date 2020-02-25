@@ -47,7 +47,8 @@ class MenuActivity : AppCompatActivity() {
             IntentClass("Ball", Intent(MenuActivity@ this, BallActivity::class.java)),
             IntentClass("BallAmbient", Intent(MenuActivity@ this, BallAmbientActivity::class.java)),
             IntentClass(Cons.BALL_LIGHT, Intent(MenuActivity@ this, BallLightActivity::class.java)),
-            IntentClass(Cons.TEXTURE, Intent(MenuActivity@ this, TextureActivity::class.java))
+            IntentClass(Cons.TEXTURE, Intent(MenuActivity@ this, TextureActivity::class.java)),
+            IntentClass(Cons.OBJ, Intent(MenuActivity@ this, ObjActivity::class.java))
 
         )
     }

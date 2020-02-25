@@ -79,6 +79,11 @@ class WorldShape(context: Context, viewType: String? = null) : RenderAble(contex
                 val texture = TextureShapeData(vertexs, textures, textureId)
                 add(TextureShape(context, texture))
             }
+            Cons.OBJ ->{
+                val objVertex=GLUtil.loadPosInObj("cy.obj",context)
+                val objShape=Shape(objVertex,null,GLES20.GL_TRIANGLES)
+                add(ObjShape(context,objShape))
+            }
         }
 
 

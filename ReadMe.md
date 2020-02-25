@@ -8,3 +8,6 @@
 
 - 球图案
 ![球](https://github.com/HadesHe/OpenGL2/blob/master/app/src/main/res/drawable/ball.png)
+
+- OBJ 元素图
+![元素图](https://github.com/HadesHe/OpenGL2/blob/master/app/src/main/res/drawable/obj.jpeg)

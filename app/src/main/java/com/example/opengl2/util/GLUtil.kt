@@ -13,6 +13,9 @@ import java.nio.ByteOrder
 import java.nio.FloatBuffer
 import java.nio.ShortBuffer
 import java.nio.charset.Charset
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
 
 object GLUtil {
 
@@ -129,6 +132,61 @@ object GLUtil {
         bitmap.recycle()
         return textureId
 
+    }
+
+    //-------------加载obj点集----------------
+    //从obj文件中加载仅携带顶点信息的物体
+    fun loadPosInObj(name: String, ctx: Context): FloatArray {
+        val alv = ArrayList<Float>()//原始顶点坐标列表
+        val alvResult = ArrayList<Float>()//结果顶点坐标列表
+        try {
+            val `in` = ctx.assets.open(name)
+            val isr = InputStreamReader(`in`)
+            val br = BufferedReader(isr)
+
+            br.readLines().forEach {
+
+                var tempsa = it.split(" ")
+                if (tempsa[0].trim().equals("v")) {//顶点坐标
+
+//                    Log.d("GLUtil","tempsa 1=${tempsa[1]} 2=${tempsa[2]} 3=${tempsa[3]} 3=${tempsa[4]}")
+                    alv.add(tempsa[2].toFloat())
+                    alv.add(tempsa[3].toFloat())
+                    alv.add(tempsa[4].toFloat())
+
+                }else if(tempsa[0].trim().equals("f")){//此行为三角形面
+//                    Log.d("GLUtil","tempsaf 1=${tempsa[1]} 2=${tempsa[2]} 3=${tempsa[3]} 3=${tempsa[4]}")
+
+                    var index=tempsa[1].split("/")[0].toInt()-1
+                    alvResult.add(alv.get(3*index))
+                    alvResult.add(alv.get(3*index+1))
+                    alvResult.add(alv.get(3*index+2))
+
+                    index = Integer.parseInt(tempsa[2].split("/")[0]) - 1;
+                    alvResult.add(alv.get(3 * index));
+                    alvResult.add(alv.get(3 * index + 1));
+                    alvResult.add(alv.get(3 * index + 2));
+                    index = Integer.parseInt(tempsa[3].split("/")[0]) - 1;
+                    alvResult.add(alv.get(3 * index));
+                    alvResult.add(alv.get(3 * index + 1));
+                    alvResult.add(alv.get(3 * index + 2));
+
+
+                }
+            }
+
+        } catch (e: Exception) {
+            Log.d("load error", "load error")
+            e.printStackTrace()
+        }
+
+        //生成顶点数组
+        val size = alvResult.size
+        val vXYZ = FloatArray(size)
+        for (i in 0 until size) {
+            vXYZ[i] = alvResult.get(i)
+        }
+        return vXYZ
     }
 
 }

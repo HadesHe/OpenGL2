@@ -10,6 +10,7 @@ import java.util.ArrayList
  */
 object Cons {
 
+    val OBJ="Obj"
     val BALL_LIGHT: String="BallLight"
     val BALL_AMBIENT: String = "BallAmbient"
     val TEXTURE:String="Texture"
